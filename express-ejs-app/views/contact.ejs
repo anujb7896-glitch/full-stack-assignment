@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= title %></title>
+</head>
+<body>
+  <nav>
+    <link rel="stylesheet" href="/css/style.css">
+    <a href="/">Home</a> |
+    <a href="/about">About</a> |
+    <a href="/contact">Contact</a> |
+    <a href="/notes">Notes</a>
+  </nav>
+  <hr />
+  <h1>Contact Us</h1>
+
+  <% if (submitted) { %>
+    <p style="color: green;"><strong>Thank you! Your message has been received.</strong></p>
+  <% } %>
+
+  <form action="/contact" method="POST">
+    <div>
+      <label>Name:</label><br />
+      <input type="text" name="name" required />
+    </div><br />
+    <div>
+      <label>Email:</label><br />
+      <input type="email" name="email" required />
+    </div><br />
+    <div>
+      <label>Message:</label><br />
+      <textarea name="message" required></textarea>
+    </div><br />
+    <button type="submit">Send Message</button>
+  </form>
+
+  <% if (messages.length > 0) { %>
+    <h3>Submitted Messages</h3>
+    <ul>
+      <% messages.forEach(msg => { %>
+        <li><strong><%= msg.name %></strong> (<%= msg.email %>): <%= msg.message %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>

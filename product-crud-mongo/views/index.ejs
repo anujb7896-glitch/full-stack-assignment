@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MongoDB Products</title>
+</head>
+<body>
+  <h1>All Products</h1>
+  <a href="/products/new">+ Add New Product</a>
+  <hr />
+
+  <% if (products.length === 0) { %>
+    <p>No products in the database yet.</p>
+  <% } %>
+
+  <ul>
+    <% products.forEach(product => { %>
+      <li style="margin-bottom: 14px;">
+        <strong><%= product.name %></strong> — ₹<%= product.price %><br />
+        <small><%= product.description %></small><br />
+        <a href="/products/<%= product._id %>">View</a> |
+        <a href="/products/<%= product._id %>/edit">Edit</a> |
+        <form action="/products/<%= product._id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

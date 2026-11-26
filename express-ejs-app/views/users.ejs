@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= title %></title>
+</head>
+<body>
+  <nav>
+    <link rel="stylesheet" href="/css/style.css">
+    <a href="/">Home</a> |
+    <a href="/about">About</a> |
+    <a href="/contact">Contact</a> |
+    <a href="/notes">Notes</a>
+  </nav>
+  <hr />
+  <h1>Notes List</h1>
+
+  <form action="/notes" method="POST">
+    <input type="text" name="note" placeholder="Enter a new note" required />
+    <button type="submit">Add Note</button>
+  </form>
+
+  <ul>
+    <% notes.forEach(item => { %>
+      <li><%= item %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>

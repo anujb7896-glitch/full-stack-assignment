@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Successful Orders</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f9; }
+    nav { background: #1971c2; padding: 14px 24px; display: flex; gap: 20px; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; }
+    .container { max-width: 820px; margin: 24px auto; padding: 0 16px; }
+    .order-card { background: #fff; padding: 18px; border-radius: 8px; margin-bottom: 16px; border-left: 5px solid #2f9e44; }
+    .badge { background: #d3f9d8; color: #2b8a3e; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Storefront</a>
+    <a href="/cart">Cart (<%= cartCount %>)</a>
+    <a href="/orders">Successful Orders</a>
+    <a href="/seller">Seller Master Panel</a>
+  </nav>
+
+  <div class="container">
+    <h1>Successful Orders</h1>
+    <% if (orders.length === 0) { %>
+      <p>No orders placed yet.</p>
+    <% } %>
+
+    <% orders.forEach(order => { %>
+      <div class="order-card">
+        <div style="display:flex; justify-content:space-between;">
+          <strong>Order ID: <%= order._id %></strong>
+          <span class="badge"><%= order.status %></span>
+        </div>
+        <p><strong>Customer:</strong> <%= order.customerName %> | <strong>Payment:</strong> <%= order.paymentMethod %></p>
+        <p><strong>Address:</strong> <%= order.address %></p>
+        <ul>
+          <% order.items.forEach(item => { %>
+            <li><%= item.name %> × <%= item.quantity %> — ₹<%= item.price * item.quantity %></li>
+          <% }) %>
+        </ul>
+        <p><strong>Total Paid:</strong> ₹<%= order.totalAmount %> • <small><%= order.createdAt.toLocaleString() %></small></p>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

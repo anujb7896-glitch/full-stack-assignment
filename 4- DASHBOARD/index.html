@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+<script>
+
+    // Create main container
+    let container = document.createElement("div");
+
+    container.style.backgroundColor = "#f2f4f8";
+    container.style.padding = "20px";
+    container.style.fontFamily = "Arial";
+    container.style.minHeight = "100vh";
+
+    document.body.appendChild(container);
+
+    // Create heading
+    let heading = document.createElement("h1");
+    heading.innerText = "Dashboard";
+    heading.style.color = "#2c3e50";
+
+    container.appendChild(heading);
+
+    // Create navigation
+    let nav = document.createElement("div");
+    nav.innerText = "Home   |   Users   |   Reports   |   Settings";
+
+    nav.style.backgroundColor = "#34495e";
+    nav.style.color = "white";
+    nav.style.padding = "15px";
+    nav.style.marginBottom = "20px";
+
+    container.appendChild(nav);
+
+    // Create cards
+    let cardContainer = document.createElement("div");
+
+    cardContainer.style.display = "flex";
+    cardContainer.style.flexWrap = "wrap";
+    cardContainer.style.gap = "20px";
+
+    container.appendChild(cardContainer);
+
+    let titles = ["Total Users", "Sales", "Orders", "Revenue"];
+    let values = ["1200", "850", "450", "50000"];
+    let colors = ["#3498db", "#2ecc71", "#e67e22", "#9b59b6"];
+
+    for (let i = 0; i < titles.length; i++) {
+
+        let card = document.createElement("div");
+
+        card.style.backgroundColor = colors[i];
+        card.style.color = "white";
+        card.style.padding = "25px";
+        card.style.width = "180px";
+        card.style.borderRadius = "10px";
+        card.style.textAlign = "center";
+        card.style.boxShadow = "0 3px 8px gray";
+
+        let title = document.createElement("h3");
+        title.innerText = titles[i];
+
+        let value = document.createElement("h2");
+        value.innerText = values[i];
+
+        card.appendChild(title);
+        card.appendChild(value);
+
+        cardContainer.appendChild(card);
+    }
+
+    // Create footer
+    let footer = document.createElement("h3");
+
+    footer.innerText = "Welcome to Admin Dashboard";
+    footer.style.marginTop = "30px";
+    footer.style.color = "#34495e";
+
+    container.appendChild(footer);
+
+</script>
+
+</body>
+</html>

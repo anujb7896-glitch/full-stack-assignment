@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Seller Master Panel</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f9; }
+    nav { background: #1971c2; padding: 14px 24px; display: flex; gap: 20px; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; }
+    .container { max-width: 900px; margin: 24px auto; background: #fff; padding: 24px; border-radius: 8px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    input, textarea { width: 100%; padding: 8px; box-sizing: border-box; }
+    button { padding: 10px 16px; background: #1971c2; color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Storefront</a>
+    <a href="/cart">Cart (<%= cartCount %>)</a>
+    <a href="/orders">Successful Orders</a>
+    <a href="/seller">Seller Master Panel</a>
+  </nav>
+
+  <div class="container">
+    <h1>Seller Master Panel</h1>
+    <h3>Add New Product</h3>
+    <form action="/seller/products" method="POST" class="form-grid">
+      <input type="text" name="name" placeholder="Product Name" required />
+      <input type="number" name="price" placeholder="Price (₹)" step="0.01" required />
+      <input type="number" name="stock" placeholder="Stock Quantity" value="10" required />
+      <input type="text" name="image" placeholder="Image URL (optional)" />
+      <textarea name="description" placeholder="Product Description" style="grid-column: span 2;" required></textarea>
+      <button type="submit" style="grid-column: span 2;">Add Product to Store</button>
+    </form>
+
+    <h3>Manage Existing Products</h3>
+    <table>
+      <tr><th>Name</th><th>Price</th><th>Stock</th><th>Description</th><th>Action</th></tr>
+      <% products.forEach(p => { %>
+        <tr>
+          <td><%= p.name %></td>
+          <td>₹<%= p.price %></td>
+          <td><%= p.stock %></td>
+          <td><%= p.description %></td>
+          <td><a href="/seller/products/<%= p._id %>/edit">Edit Details</a></td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do List</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #eaf2f8;
+            text-align: center;
+        }
+
+        .container {
+            width: 450px;
+            margin: 50px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px gray;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 55%;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 4px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background: #3498db;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        li {
+            margin: 12px 0;
+            padding: 10px;
+            background: #d6eaf8;
+            border-radius: 6px;
+            list-style: none;
+        }
+
+        li button:first-of-type {
+            background: #e74c3c;
+        }
+
+        li button:nth-of-type(2),
+        li button:nth-of-type(3) {
+            background: #27ae60;
+        }
+
+        li input:checked + span {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>My To Do List</h2>
+
+        <input type="text" id="task"
+        placeholder="Enter your task">
+
+        <button onclick="addTask()">Add</button>
+
+        <ul id="list"></ul>
+
+    </div>
+
+    <script>
+        function addTask() {
+            let input = document.getElementById("task");
+            let value = input.value;
+
+            if (value === "") {
+                alert("Enter a task");
+                return;
+            }
+
+            let li = document.createElement("li");
+
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            let span = document.createElement("span");
+            span.innerText = " " + value + " ";
+
+            let del = document.createElement("button");
+            del.innerText = "Delete";
+            del.onclick = function() {
+                li.remove();
+            };
+
+            let up = document.createElement("button");
+            up.innerText = "Up";
+            up.onclick = function() {
+                let prev = li.previousElementSibling;
+                if (prev) {
+                    li.parentNode.insertBefore(li, prev);
+                }
+            };
+
+            let down = document.createElement("button");
+            down.innerText = "Down";
+            down.onclick = function() {
+                let next = li.nextElementSibling;
+                if (next) {
+                    li.parentNode.insertBefore(next, li);
+                }
+            };
+
+            li.append(checkbox, span, del, up, down);
+
+            document.getElementById("list").appendChild(li);
+
+            input.value = "";
+        }
+    </script>
+
+</body>
+</html>

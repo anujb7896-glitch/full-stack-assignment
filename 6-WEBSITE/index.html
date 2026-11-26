@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random Jokes Generator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f6f9;
+      color: #222;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: #fff;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: 24px;
+    }
+
+    .joke-box {
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px;
+      margin-bottom: 20px;
+      background: #f8f9fa;
+      border-left: 4px solid #1971c2;
+      border-radius: 6px;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .punchline {
+      font-weight: bold;
+      color: #1864ab;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background: #1971c2;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover:not(:disabled) {
+      background: #1864ab;
+    }
+
+    button:disabled {
+      background: #adb5bd;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Random Joke</h1>
+    <div id="jokeBox" class="joke-box">Click the button below to load a joke!</div>
+    <button id="jokeBtn">Get Another Joke</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment Checkout</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f9; }
+    nav { background: #1971c2; padding: 14px 24px; display: flex; gap: 20px; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; }
+    .container { max-width: 520px; margin: 24px auto; background: #fff; padding: 24px; border-radius: 8px; }
+    input, textarea, select { width: 100%; padding: 9px; margin: 6px 0 14px; box-sizing: border-box; }
+    button { width: 100%; padding: 11px; background: #2f9e44; color: #fff; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Storefront</a>
+    <a href="/cart">Cart (<%= cartCount %>)</a>
+    <a href="/orders">Successful Orders</a>
+    <a href="/seller">Seller Master Panel</a>
+  </nav>
+
+  <div class="container">
+    <h1>Payment System</h1>
+    <p><strong>Amount Payable:</strong> ₹<%= total %></p>
+    <form action="/checkout" method="POST">
+      <label>Full Name</label>
+      <input type="text" name="customerName" required />
+
+      <label>Delivery Address</label>
+      <textarea name="address" rows="3" required></textarea>
+
+      <label>Payment Method</label>
+      <select name="paymentMethod" required>
+        <option value="UPI">UPI</option>
+        <option value="Credit / Debit Card">Credit / Debit Card</option>
+        <option value="Net Banking">Net Banking</option>
+      </select>
+
+      <label>Card / UPI Reference</label>
+      <input type="text" placeholder="e.g., user@upi or 4111-XXXX-XXXX-1111" required />
+
+      <button type="submit">Pay ₹<%= total %> &amp; Place Order</button>
+    </form>
+  </div>
+</body>
+</html>
